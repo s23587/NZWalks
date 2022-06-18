@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NZWalks.API.Data;
+using NZWalks.API.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,10 @@ namespace NZWalks.API
             services.AddDbContext<NZWalksDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("NZWalks"));
             });
+
+            services.AddScoped<IRegionRepository, RegionRepository>();
+
+            services.AddAutoMapper(typeof(Program).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
