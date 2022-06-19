@@ -29,7 +29,7 @@ namespace NZWalks.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllRegions() {
 
-            var regions = await regionRepository.GetAllAsync();
+            var regions = await regionRepository.GetAllRegionsAsync();
 
             // return DTO regions
             /* var regionsDTO = new List<Models.DTO.Region>();
@@ -57,7 +57,7 @@ namespace NZWalks.API.Controllers
         [Route("{id:guid}")]
         [ActionName("GetRegionAsync")]
         public async Task<IActionResult> GetRegionAsync(Guid id) {
-            var region = await regionRepository.GetAsync(id);
+            var region = await regionRepository.GetRegionAsync(id);
 
             if (region == null) { return NotFound(); }
 
@@ -80,7 +80,7 @@ namespace NZWalks.API.Controllers
             };
 
             // Pass details to repository
-            region = await regionRepository.AddAsync(region);
+            region = await regionRepository.AddRegionAsync(region);
 
             // Convert back to DTO
             var regionDTO = new Models.DTO.Region
@@ -101,7 +101,7 @@ namespace NZWalks.API.Controllers
         [Route("{id:guid}")]
         public async Task<IActionResult> DeleteRegionAsync(Guid id) {
             // Get region from database
-            var deletedRegion = await regionRepository.DeleteAsync(id);
+            var deletedRegion = await regionRepository.DeleteRegionAsync(id);
 
             // if region not found send message
             if (deletedRegion == null) { return NotFound(); }
@@ -128,7 +128,7 @@ namespace NZWalks.API.Controllers
             };
 
             // Update region using repository
-            var updatedRegion = await regionRepository.UpdateAsync(id, region);
+            var updatedRegion = await regionRepository.UpdateRegionAsync(id, region);
 
             // if null then notfound
 

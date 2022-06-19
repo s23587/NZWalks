@@ -40,6 +40,7 @@ namespace NZWalks.API
             });
 
             services.AddScoped<IRegionRepository, RegionRepository>();
+            services.AddScoped<IWalkRepository, WalkRepository>();
 
             services.AddAutoMapper(typeof(Program).Assembly);
         }
