@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NZWalks.API.Models.DTO;
 using NZWalks.API.Repositories;
 using System;
@@ -29,11 +30,11 @@ namespace NZWalks.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllWalks() {
 
-            var walk = await walkRepository.GetAllWalksAsync();
+            var walks = await walkRepository.GetAllWalksAsync();
 
-            var walkDTO = mapper.Map<List<Models.DTO.Walks>>(walk);
+            var walksDTO = mapper.Map<List<Models.DTO.Walks>>(walks);
 
-            return Ok(walkDTO);
+            return Ok(walksDTO);
         }
 
         [HttpGet]
@@ -45,15 +46,7 @@ namespace NZWalks.API.Controllers
 
             if (walk == null) { return NotFound(); }
 
-            //var walkDTO = mapper.Map<Models.DTO.Walks>(walk);
-
-            var walkDTO = new Models.DTO.Walks()
-            {
-                Name = walk.Name,
-                length = walk.length,
-                RegionId = walk.RegionId,
-                WalkDifficultyId = walk.WalkDifficultyId
-            };
+            var walkDTO = mapper.Map<Models.DTO.Walks>(walk);
 
             return Ok(walkDTO);
         }
