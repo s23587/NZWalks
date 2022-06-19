@@ -11,6 +11,8 @@ namespace NZWalks.API.Profiles
         public WalkProfile()
         {
             CreateMap<Models.Domain.Walk, Models.DTO.Walks>().ReverseMap();
+
+            CreateMap<Models.Domain.WalkDifficulty, Models.DTO.WalkDifficulty>().ReverseMap();
         }
     }
 }
