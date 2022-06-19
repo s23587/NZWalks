@@ -41,6 +41,7 @@ namespace NZWalks.API
 
             services.AddScoped<IRegionRepository, RegionRepository>();
             services.AddScoped<IWalkRepository, WalkRepository>();
+            services.AddScoped<IWalkDifficultyRepository, WalkDifficultyRepository>();
 
             services.AddAutoMapper(typeof(Program).Assembly);
         }
